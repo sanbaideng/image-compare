@@ -47,14 +47,14 @@ class FourPoint(object):
             return self
         self.count = self.count + 1
     def isOutRight(self):
-        print("右边到顶了")
         if(self.index + self.count > self.shigh):
+            print("右边到顶了")
             return True
         else:
             return False
     def isOutLeft(self):
-        print("左边到顶了")
         if(self.index - self.count < self.slow):
+            print("左边到顶了")
             return True
         else:
             return False

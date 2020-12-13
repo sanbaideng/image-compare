@@ -6,8 +6,8 @@ import math
 import operator
 from functools import reduce
 import time
-from src.comAlth.ImageHash import compareIH
-from src.comAlth.FourPoint import FourPoint
+from comAlth.ImageHash import compareIH
+from comAlth.FourPoint import FourPoint
 
 
 g1 = os.walk(r"xjcy")
@@ -77,28 +77,31 @@ def findSimilarPic(file_list1,file_list2,fpoint):
 def midFindAll(file_list1,file_list2,fourPoint):
     smid = fourPoint.getSmid()
     bmid = fourPoint.getBmid()
-    #找中间
-    rm = findSimilarPic(file_list1,file_list2,fourPoint)
-    if(smid == slow or smid == shigh):
-        return rm
-    #找下面
-    mid = rm.current
-    fl = rm
-    
-    #dic不同步得问题 TODO
-    fl.shigh = mid
-    fl.blow = fl.dic[slow]
-    fl.bhigh = fl.dic[shigh]
-    rl = findSimilarPic(file_list1,file_list2,fourPoint)
-    #找上面
-    fh = rm
-    fh.slow = mid+1
-    fh.blow = fh.dic[slow]
-    fh.bhigh = fh.dic[shigh]
-    rh = findSimilarPic(file_list1,file_list2,fourPoint)
-
     #返回条件
-    rm.shigh = smid
+    if(fourPoint.slow>=fourPoint.shigh):
+        return fourPoint
+    #找中间
+    resMid = findSimilarPic(file_list1,file_list2,fourPoint)
+    if(smid == resMid.slow or smid == resMid.shigh):
+        return resMid
+    mid = resMid.current
+    #找下面
+    fplow = resMid
+    fplow.shigh = mid
+    fplow.bhigh = resMid.dic[resMid.current]
+    resLow = findSimilarPic(file_list1,file_list2,fplow)
+    #找上面
+    fphigh = resMid
+    fphigh.slow = mid+1
+    fphigh.blow = fphigh.dic[slow]
+    fphigh.bhigh = fphigh.dic[shigh]
+    resHigh = findSimilarPic(file_list1,file_list2,fphigh)
+    print("resLow.dic:")
+    print(resLow.dic)
+    print("resHigh.dic:")
+    print(resHigh.dic)
+
+
 
 def findSimiPic(file_list1,file_list2,fourPoint):
     file1_len = len(file_list1)
@@ -155,11 +158,23 @@ if __name__ == '__main__':
 
     rhigh=findSimilarPic(file_list1,file_list2,f1)
     rlow=findSimilarPic(file_list1,file_list2,f2)
+
+    newFourPoint = rlow
+    newFourPoint.shigh = rhigh.current
+    newFourPoint.slow = rlow.current
+    newFourPoint.bhigh = rhigh.dic[rhigh.current]
+    newFourPoint.blow = rlow.dic[rlow.current]
+    newFourPoint.index = int((rhigh.current+rlow.current)/2)
+    newFourPoint.current = int((rhigh.current+rlow.current)/2)
+    newFourPoint.flag = False
+    newFourPoint.count = 0
     #print(rhigh)
 
     #print(rlow)
     print(rlow.dic)
     print(rhigh.dic)
+    print("Start new findmid")
+    midFindAll(file_list1,file_list2,newFourPoint)
 
 
 

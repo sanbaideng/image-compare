@@ -6,11 +6,11 @@ import math
 import operator
 from functools import reduce
 import time
-from src.aphash import PHash
-from src.comAlth.ImageHash import compareIH
-from src.comAlth import aHash
-from src.comAlth.aHash import classfiy_aHash
-from src.comAlth.histogram2 import *
+from aphash import PHash
+from comAlth.ImageHash import compareIH
+from comAlth import aHash
+from comAlth.aHash import classfiy_aHash
+from comAlth.histogram2 import *
 
 def compare(pic1,pic2):
     '''
@@ -43,7 +43,7 @@ def compareHist(stdimg, ocimg):
         print("imgocr",imgocr[0, 1])
     return imgocr[0, 1] > 0.90
 
-g1 = os.walk(r"xjcy2")
+g1 = os.walk(r"xjcy")
 g2 = os.walk(r'muyu')
 file_list1 = []
 file_list2 = []

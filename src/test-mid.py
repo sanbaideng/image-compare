@@ -10,7 +10,7 @@ from src.comAlth.ImageHash import compareIH
 from src.comAlth.FourPoint import FourPoint
 
 
-g1 = os.walk(r"xjcy2")
+g1 = os.walk(r"xjcy")
 g2 = os.walk(r'muyu')
 file_list1 = []
 file_list2 = []
@@ -79,9 +79,23 @@ def midFindAll(file_list1,file_list2,fourPoint):
     bmid = fourPoint.getBmid()
     #找中间
     rm = findSimilarPic(file_list1,file_list2,fourPoint)
+    if(smid == slow or smid == shigh):
+        return rm
     #找下面
-
+    mid = rm.current
+    fl = rm
+    
+    #dic不同步得问题 TODO
+    fl.shigh = mid
+    fl.blow = fl.dic[slow]
+    fl.bhigh = fl.dic[shigh]
+    rl = findSimilarPic(file_list1,file_list2,fourPoint)
     #找上面
+    fh = rm
+    fh.slow = mid+1
+    fh.blow = fh.dic[slow]
+    fh.bhigh = fh.dic[shigh]
+    rh = findSimilarPic(file_list1,file_list2,fourPoint)
 
     #返回条件
     rm.shigh = smid

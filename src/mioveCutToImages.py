@@ -39,6 +39,6 @@ def capFrame(videoPath, savePath, frameNum):
 if __name__ == '__main__':
     print(time.localtime(time.time()))  # 获得时间元组
 
-    capFrame('xjcy2.mp4', 'xjcy2', 72)
+    capFrame('muyu.flv', 'muyu', 72)
     print(time.localtime(time.time()))  # 获得时间元组
 

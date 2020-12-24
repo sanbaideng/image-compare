@@ -12,7 +12,7 @@ from comAlth import aHash
 from comAlth.aHash import classfiy_aHash
 from comAlth.histogram2 import *
 
-g1 = os.walk(r"xjcy")
+g1 = os.walk(r"xjcy2")
 g2 = os.walk(r'muyu')
 file_list1 = []
 file_list2 = []
@@ -50,19 +50,26 @@ if __name__ == '__main__':
     print(file_list2)
     dic = {i: -1 for i in range(file2_len)}
     dic[file2_len] = file1_len
-    print(dic)
+
     for idx, file2 in enumerate(file_list2):
         index = current+1
         while index < file1_len:
             file1 = file_list1[index-1]
             # 二分法
-            if idx/file2_len*2 < index/file1_len:
+            if index > 600 and idx/file2_len*2 < index/file1_len:
+                # print("idx/file2_len*4:", "index/file1_len:")
+                # print(idx, file2_len, idx/file2_len*4, "file1:",
+                #       index, file1_len, index/file1_len)
+                #print(idx, index)
                 break
             if(compareIH(file1, file2, 4)):
                 print("找到相近的图片：", idx, file2, file1, index, current)
+                dic[idx] = index
                 current = index
                 break
             index += 1
+    print("结果如下", "dic")
+    print(dic)
 
 
 def findSimiPic(file_list1, file_list2, dict, index, low, high):

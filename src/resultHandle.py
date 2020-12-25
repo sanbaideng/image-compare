@@ -31,7 +31,7 @@ def readFile():
     curend1 = 0
     curend2 = 0
 
-    jumptime = 1
+    jumptime = 2
     fp = open("rescsvcopy.csv")
     timecsvfile1 = "time1.csv"
     timecsvfile2 = "time2.csv"
@@ -59,9 +59,9 @@ def readFile():
             if(curend2 > curstart2):
                 # 计算上一个
                 muyucut1 = calTimeLine(
-                    duration2, FrameNumber2, int(curstart2), 24)
+                    duration2, FrameNumber2, int(curstart2), 48)
                 muyucut2 = calTimeLine(
-                    duration2, FrameNumber2, int(curend2), 24)
+                    duration2, FrameNumber2, int(curend2), 48)
                 sourceCut1 = calTimeLine(
                     duration1, FrameNumber1, int(curstart1), 24)
                 sourceCut2 = calTimeLine(

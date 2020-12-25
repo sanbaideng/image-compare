@@ -89,7 +89,7 @@ def writecvsLine(filename, time1, time2):
 
 
 def writeLine(filename, line):
-    fo = open(filename, "a+")
+    fo = open(filename, "a+", encoding='utf-8')
     fo.writelines(line + '\n')
     fo.close()
 

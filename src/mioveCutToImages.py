@@ -2,7 +2,9 @@ import time
 import cv2
 import os
 
-
+'''
+视频截成图片
+'''
 def capFrame(videoPath, savePath, frameNum):
     cap = cv2.VideoCapture(videoPath)
     frame_counter = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))

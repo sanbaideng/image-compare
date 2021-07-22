@@ -1,12 +1,15 @@
 from cv2 import cv2
 import numpy as np
-import os
+import os,sys
+sys.path.append('D:\\code\\PycharmProjects\\PycharmProjects\\ImageCompare\\src\\comAlth')
+
 from PIL import Image
 import math
 import operator
 from functools import reduce
 import time
-from aphash import PHash
+
+from . import aphash
 from comAlth.ImageHash import compareIH
 from comAlth import aHash
 from comAlth.aHash import classfiy_aHash
